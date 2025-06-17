@@ -1,3 +1,4 @@
+base build is only 2.85GiB in size using Python 3.x slim and CUDA 10x to 12x
 
 docker build -f <DOCKERFILE_NAME> -t <IMAGE_NAME>:latest .
 
