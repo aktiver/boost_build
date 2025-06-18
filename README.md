@@ -7,11 +7,79 @@ docker run --gpus '"device=0"' -it --rm  <IMAGE_NAME> bash
 
 images are avail at: https://hub.docker.com/repositories/aktiver
 
-----------------------------------------------------------------
+---
+
+To use all GPUs or specific GPU indices with Docker Compose:
+
+### Docker/Docker Compose Configuration (all GPUs):
+
+```bash
+docker run --gpus '"device=0"' -it --rm <IMAGE_NAME> bash
+```
+
+For multiple GPUs:
+
+```bash
+docker run --gpus '"device=0,2"' -it --rm <IMAGE_NAME> bash
+```
+
+To use all GPUs:
+
+```bash
+docker run --gpus all -it --rm <IMAGE_NAME> bash
+```
+
+This syntax is standard and directly controls GPU visibility at runtime for your container.
+
+To use all GPUs:
+
+```yaml
+services:
+  your_service:
+    image: your_image
+    runtime: nvidia  # Enables NVIDIA GPU support
+    ipc: host
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+```
+
+or (simplified version):
+
+```yaml
+services:
+  your_service:
+    image: your_image
+    runtime: nvidia  # Enables NVIDIA GPU support
+    ipc: host
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+```
+
+---
+
+### Selecting specific GPUs by index:
+
+To select specific GPUs by index, set the environment variable:
+
+```yaml
+services:
+  your_service:
+    image: your_image
+    runtime: nvidia  # Enables NVIDIA GPU support
+    ipc: host
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=0,2 # GPUs with indices 0 and 2
+```
+
+This will expose only the selected GPUs (by index) to the container.
+
+----
 
 ### Push your Docker image to Docker Hub:
 
----
 
 ### ✅ **1. Log into Docker Hub**
 
