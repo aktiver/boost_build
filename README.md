@@ -1,11 +1,25 @@
-base build is only 2.85GiB in size using Python 3.x slim and CUDA 10x to 12x
+## 🐳 Aktiver GPU BoostBuilds: Instantly Deploy Ultra-Slim Python AI Containers
 
-docker build -f <DOCKERFILE_NAME> -t <IMAGE_NAME>:latest .
+## 🚀 Description:
 
-docker run --gpus '"device=0"' -it --rm  <IMAGE_NAME> bash
+A flexible, ultra-optimized Docker image built on Python slim (3.8–3.13) and fully configurable NVIDIA CUDA (10.x–12.x) with cuDNN support. Ideal for GPU-powered AI/ML workloads, from rapid experimentation to production-grade model training and inference. Easily extendable via Micromamba, customizable CUDA/cuDNN versions, and ready-to-deploy PyTorch integration.
 
+## ⚡ Features:
 
-images are avail at: https://hub.docker.com/repositories/aktiver
+* Lightweight Python slim images (versions 3.8–3.13)
+* Flexible NVIDIA CUDA support (10.x–12.x)
+* Customizable cuDNN installations (8.x–9.x)
+* Optional Micromamba integration for fast environment management
+* Official CUDA/cuDNN installation from NVIDIA sources
+* PyTorch optimized and pre-configured for CUDA acceleration
+* Easy runtime GPU selection (single, multiple, or all GPUs)
+* Compact, efficient images (\~2.85GiB), perfect for streamlined deployments
+* Pre-set environment variables for immediate use (`PATH`, `LD_LIBRARY_PATH`, `CUDA_HOME`)
+* Docker Hub ready (with simple tagging and push instructions)
+* Robust Python dependency management (e.g., precise NumPy version control)
+* Clear and modular Dockerfile for rapid customization and extension
+
+#### Images are publicly avail at: [Aktiver's DockerHub](https://hub.docker.com/repositories/aktiver)
 
 ---
 
