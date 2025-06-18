@@ -9,6 +9,7 @@ Base container starts @ `~2.85GiB`, perfect for streamlined deployments!
 ## ⚡ Features:
 
 * Lightweight Python slim images (versions 3.8–3.13)
+* Auto builds for ARM/IoT, x86, Intel/AMD.
 * Flexible NVIDIA CUDA support (10.x–12.x)
 * Customizable cuDNN installations (8.x–9.x)
 * Optional Micromamba integration for fast environment management
