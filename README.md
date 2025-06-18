@@ -4,6 +4,8 @@
 
 A flexible, ultra-optimized Docker image built on Python slim (3.8–3.13) and fully configurable NVIDIA CUDA (10.x–12.x) with cuDNN support. Ideal for GPU-powered AI/ML workloads, from rapid experimentation to production-grade model training and inference. Easily extendable via Micromamba, customizable CUDA/cuDNN versions, and ready-to-deploy PyTorch integration.
 
+Base container starts @ `~2.85GiB`, perfect for streamlined deployments!
+
 ## ⚡ Features:
 
 * Lightweight Python slim images (versions 3.8–3.13)
