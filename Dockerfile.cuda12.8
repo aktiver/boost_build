@@ -1,0 +1,32 @@
+# syntax=docker/dockerfile:1
+ARG PYTHON_VERSION=3.12
+FROM python:${PYTHON_VERSION}-slim
+
+ARG CUDA_VERSION=12.8
+ARG CUDNN_VERSION=9.7
+ARG TARGETARCH
+
+# Install build dependencies
+RUN apt-get update && \
+    apt-get install --yes wget build-essential git && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install micromamba
+RUN MICROMAMBA_ARCH=$([ "$TARGETARCH" = "arm64" ] && echo "aarch64" || echo "64") && \
+    wget --quiet "https://github.com/mamba-org/micromamba-releases/releases/latest/download/micromamba-linux-${MICROMAMBA_ARCH}" \
+    --output-document /usr/local/bin/micromamba && \
+    chmod +x /usr/local/bin/micromamba
+
+# Create environment with CUDA and cuDNN
+RUN micromamba create --prefix /opt/cuda/ \
+    -c conda-forge \
+    -c "nvidia/label/cuda-${CUDA_VERSION}.0" \
+    --yes \
+    cuda-toolkit cudnn=${CUDNN_VERSION} && \
+    micromamba clean --all --yes
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+WORKDIR /app
+COPY svc /app
