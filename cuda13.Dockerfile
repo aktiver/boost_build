@@ -36,7 +36,7 @@ ENV CUDA_HOME=/opt/cuda
 RUN pip uninstall -y numpy || true && \
     pip install --no-cache-dir numpy==2.3.4
     
-# Install PyTorch with CUDA 11.6 support (optional but common)
+# Install PyTorch with CUDA 13 support (optional but common)
 RUN pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu130
 
 
